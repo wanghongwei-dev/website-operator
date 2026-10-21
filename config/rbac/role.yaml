@@ -1,0 +1,56 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+  - delete        // 【新增】管理 Service 的权限
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - create
+  - delete // 【新增】管理 Deployment 的权限
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - web.wanghongwei.dev
+  resources:
+  - websites
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - web.wanghongwei.dev
+  resources:
+  - websites/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - web.wanghongwei.dev
+  resources:
+  - websites/status
+  verbs:
+  - get
+  - patch
+  - update
